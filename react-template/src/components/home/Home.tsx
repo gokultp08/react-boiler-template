@@ -4,12 +4,33 @@ import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
+import styled from "styled-components";
 
 import { ToastContext } from "../../context/ToastProvider";
 import { useLoginMutation } from "../../store/services/userApi";
 import { ILoginBody } from "../../shared/types/interfaces";
 import { setLoggedInUser } from "../../store/services/appStateSlice";
-import "./Home.css";
+
+const HomeContainer = styled.div`
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  background-color: #0a1828;
+  width: 100%;
+  height: 100%;
+`;
+
+const First = styled.div`
+  display: grid;
+  place-items: center;
+`;
+
+const Second = styled.div`
+  display: grid;
+  place-items: center;
+`;
 
 const Home: React.FC = () => {
   const navigate = useNavigate();
@@ -67,11 +88,11 @@ const Home: React.FC = () => {
   }
 
   return (
-    <div className="home">
-      <div className="home_first">
+    <HomeContainer>
+      <First>
         <PlayArrowIcon style={{ color: "#BFA181", fontSize: "10rem" }} />
-      </div>
-      <div className="home_second">
+      </First>
+      <Second>
         <Button
           variant="outlined"
           size="small"
@@ -82,8 +103,8 @@ const Home: React.FC = () => {
         >
           Lets Go !!!!!!
         </Button>
-      </div>
-    </div>
+      </Second>
+    </HomeContainer>
   );
 };
 
